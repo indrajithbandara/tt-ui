@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<title>异步分页插件</title>
+<style>
+*{-webkit-tap-highlight-color:rgba(0,0,0,0);padding:0;margin:0}
+.listBox table{width:100%;border-collapse:collapse;border-spacing:0}
+th,td{border:1px solid #ddd;text-align:left;height:40px;line-height:40px;padding-left:10px;}
+.mt_m{margin-top:20px}
+.main{width:960px;margin:20px auto;}
+</style>
+</head>
+<body>
+<div class="main">
+<div class="listBox">
+	<table>
+		<thead>
+			<tr>
+				<th><input type="checkbox"></th>
+				<th data-name="pv">访问量</th>
+				<th data-name="uv">独立访客</th>
+				<th data-name="joinCount">参与数</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+<div class="mt_m">
+	<div class="pager"></div>
+</div>
+</div>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="/javascripts/pager-0.2.js"></script>
+<script>
+$.pager({
+	url:"/test/pageJson",
+	extData:"id=2",
+	pageBox:".pager",
+	listBox:".listBox",
+	//totalCount:75,
+	//limit:10,
+	position:"right",
+	idName:"id",
+	startTd:"<td><input type='checkbox'></td>",
+	endTd:"<td><a>删除</a></td>"
+});
+
+</script>
+</body>
+</html>

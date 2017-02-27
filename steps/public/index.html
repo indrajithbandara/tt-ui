@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>steps example</title>
+  <link rel='stylesheet' type='text/css' href='./css/steps.css' />
+  <style>
+    .main{
+      padding:50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <!--
+    <div class="steps">
+      <ul>
+        <li class="step active">
+          <div class='point after'>
+          </div>
+          <div class="info">
+            step-1
+          </div>
+        </li>
+        <li class="step active">
+          <div class='point active'>
+          </div>
+          <div class="info">
+            step-2
+          </div>
+        </li>
+        <li class="step">
+          <div class='point front'>
+          </div>
+          <div class="info">
+            step-3
+          </div>
+        </li>
+      </ul>
+    </div>
+  -->
+    <div id="stepsContainer"></div>
+  </div>
+  <script src='./js/steps.js'></script>
+  <script>
+    var data = [
+      {
+        text: 'step-1',
+        class: 'front',
+        url: 'http://www.google.com'
+      },
+      {
+        text: 'step-2',
+        class: 'front',
+        active: true
+      },
+      {
+        text: 'step-3',
+        class: 'active'
+      },
+      {
+        text: 'step-4',
+        class: 'active'
+      },
+      {
+        text: 'step-5',
+        class: 'active'
+      },
+      {
+        text: 'step-6',
+        class: 'active'
+      },
+      {
+        text: 'step-7',
+        class: 'after'
+      },
+    ];
+    var steps = new Steps(data);
+    var stepsContainer = document.getElementById('stepsContainer');
+    stepsContainer.appendChild(steps.getDom(data));
+    steps.click(function(e, i){
+      console.log(this);
+      console.log(e, i);
+    });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+.main{position: absolute;width:100%;height: 100%;}
+.main .item{position: absolute;width:100%;height:100%;}
+.main .item.a{background-color:#bac;}
+.main .item.b{background-color:#cba;}
+.main .item.c{background-color:#abc;}

@@ -1,0 +1,167 @@
+
+$activeBgColor:#fab747;
+$afterBgColor:#aaa;
+$frontBgColor:#28b779;
+$lineColor:#c8c8c8;
+$infoBgColor:#c8c8c8;
+$activeInfoBgColor:#ff8904;
+
+// base mixin css
+@mixin base($attr, $value){
+  -webkit-#{$attr}: $value;
+     -moz-#{$attr}: $value;
+      -ms-#{$attr}: $value;
+       -o-#{$attr}: $value;
+          #{$attr}: $value;
+}
+@mixin transition($time) {
+  @include base(transition, $time ease all);
+}
+@mixin radius($r){
+  @include base(border-radius, $r);
+}
+@mixin scale($r){
+  @include base(transform, scale($r, $r));
+}
+@mixin clearfix(){
+  &:after{
+    content:"";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+  }
+}
+// base angle mixin
+@mixin angle($width:5px, $direction:top, $color:$activeInfoBgColor){
+  display:block;
+  width:0;
+  height:0;
+  margin:0;
+  padding:0;
+  border:$width solid transparent;
+  position:absolute;
+  left:50%;
+  margin-left:-$width;
+  border-#{$direction}-color: $color;
+}
+
+
+*{
+  margin:0;
+  padding:0;
+}
+li{
+  list-style: none;
+}
+body{
+  font-family: "Microsoft Yahei","Open Sans","Helvetica Neue","Helvetica",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+// multiplex mixin
+@mixin step-point-middle(){
+  .info{
+    background-color:$activeInfoBgColor;
+    &:after{
+      @include angle(8px, top, $activeInfoBgColor);
+    }
+  }
+  .point{
+    &:after{
+      @include scale(1);
+    }
+    &.front:after{
+      border-color: $frontBgColor;
+    }
+    &.active:after{
+      border-color: $activeBgColor;
+    }
+    &.after:after{
+      border-color: $afterBgColor;
+    }
+  }
+}
+
+.steps{
+  width:100%;
+  font-size: 14px;
+  ul{
+    @include clearfix();
+  }
+  .step-inner{
+    display: inline-block;
+    height:100%;
+    &:hover{
+      @include step-point-middle();
+    }
+  }
+  .step{
+    position: relative;
+    float: left;
+    width:20%;
+    height:62px;
+    text-align: center;
+    &.active{
+      @include step-point-middle();
+    }
+    .point{
+      position: absolute;
+      width:14px;
+      height:14px;
+      bottom:4px;
+      left:50%;
+      margin-left:-8px;
+      z-index: 2;
+      cursor:pointer;
+      background-color:$afterBgColor;
+      @include radius(50%);
+      &.active{
+        background-color:$activeInfoBgColor;
+      }
+      &.front{
+        background-color:$frontBgColor;
+      }
+      &.after{
+        background-color:$afterBgColor;
+      }
+      &:after{
+        content:'';
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid transparent;
+        @include radius(50%);
+        @include transition(.2s);
+        @include scale(.5);
+        margin-left: -5px;
+        margin-top: -5px;
+      }
+    }
+    .info{
+      @include transition(.4s);
+      display: inline-block;
+      padding-left:5px;
+      padding-right:5px;
+      height:26px;
+      line-height: 26px;
+      background-color:$lineColor;
+      color:#fff;
+      text-align: center;
+      @include radius(4px);
+      &:after{
+        content:'';
+        @include angle(8px, top, $infoBgColor);
+        @include transition(.4s);
+      }
+    }
+    &:after{
+      position:absolute;
+      bottom:10px;
+      display:block;
+      content:'';
+      height:2px;
+      width:100%;
+      background-color: $lineColor;
+    }
+  }
+}

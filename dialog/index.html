@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <title>dialog test page</title>
+        <link type='text/css' rel='stylesheet' href='./dist/style.min.css'/>
+    </head>
+    <body>
+
+<!--弹窗导出模板-->
+<script id="exportTmp" type="text/template">
+<div class="mt_16 clearfix">
+    <div class="span_2 fleft gray">共<span class="totalExportPage">5</span>页(每页250条记录)</div>
+    <div class="span_2 fright tright gray">导出第&nbsp;<input type="text" style="width:60px;height:22px;padding:0;" class="exportPage">&nbsp;页</div>
+</div>
+</script>
+
+
+<script type="text/javascript" charset="utf-8" src="lib/jquery.min.js"></script>
+<script src="dist/dialog.min.js"></script>
+<script>
+
+var dialog = Dialog.getInstance();
+dialog.show("infomation",{
+    confirm:function(){}
+})
+</script>
+
+
+</body>
+</html>
